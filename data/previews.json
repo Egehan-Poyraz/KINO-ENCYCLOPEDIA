@@ -1,0 +1,22 @@
+{
+  "tsoi": {
+    "title": "Victor Tsoi",
+    "image": "images/Tsoi.jpg",
+    "summary": "Soviet singer-songwriter and frontman of Kino, widely regarded as a voice of late-Soviet youth until his tragic passing on August 15, 1990."
+	},
+	"yuri": {
+    "title": "Yuri Kasparyan",
+    "image": "images/Yuri.jpg",
+    "summary": "Lead guitarist of Kino, known for atmospheric and minimalist post-punk guitar work."
+  },
+  "gustav": {
+    "title": "Georgy Guryanov",
+    "image": "images/Gustav.png",
+    "summary": "Drummer of Kino whose precise, restrained style defined the band’s rhythmic identity."
+	},
+	  "igor": {
+    "title": "Igor Tikhomirov",
+    "image": "images/Igor.png",
+    "summary": "Bass guitarist of Kino that joined in 1986, replacing Alexander Titov, becoming part of the band’s classic lineup along with Tsoi, Yuri and Gustav."
+  }
+}

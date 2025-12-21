@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Fan webpage about Soviet Post-Punk band Kino.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Кино Encyclopedia - Forum</title>
+ <link rel="icon" href="images/KinoLogo.png" type="image/png">
+ <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="dark-mode">
+<button id="open-profile-btn" class="profile-btn hidden" onclick="openProfileModal()">Profile</button>
+
+
+<header class="site-header">
+<div class="logo-area">
+<h1>KINO ENCYCLOPEDIA</h1>
+<p class="tagline">Victor Tsoi • Post‑Punk • Soviet Rock Legacy</p>
+</div>
+
+
+<!-- Navigation buttons from previous project -->
+<nav class="main-nav" role="navigation" aria-label="Main navigation">
+<ul>
+<li><a href="index.html">Introduction</a></li>
+<li><a href="KinoMem.html">Band Members</a></li>
+<li><a href="KinoFor.html">Forum</a></li>
+<li><a href="KinoArc.html">Archive</a></li>
+</ul>
+</nav>
+
+
+<!-- Light/Dark Mode Toggle -->
+<button id="mode-toggle" class="mode-btn" aria-label="Toggle Light/Dark Mode">
+<img id="mode-icon" src="images/KinoStar.png" alt="Dark Mode Icon" type="image/png">
+</button>
+</header>
+
+<!-- Model overlay -->
+<div id="profile-modal" class="modal-overlay hidden" onclick="closeProfileModalOnBackdrop(event)">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title">
+    <div class="modal-header">
+      <h3 id="profile-modal-title">Profile</h3>
+      <button onclick="closeProfileModal()">✕</button>
+    </div>
+
+    <div id="profile-box" class="forum-box">
+      <div style="display:flex; gap:16px; align-items:center; margin-bottom:12px;">
+        <img id="profile-img" alt="Profile" style="width:72px;height:72px;border-radius:12px;object-fit:cover;">
+        <div>
+          <input id="profile-photo" type="file" accept="image/*">
+          <button onclick="uploadProfilePhoto()">Upload photo</button>
+        </div>
+      </div>
+
+      <input id="profile-name" placeholder="Display name (optional)">
+      <textarea id="profile-bio" rows="3" placeholder="Bio (optional)"></textarea>
+
+      <button onclick="saveProfile()">Save profile</button>
+	  <p id="profile-error" class="form-error" hidden></p>
+	  <p id="profile-success" class="form-success" hidden></p>
+    </div>
+  </div>
+</div>
+
+<main class="content">
+
+<section id="forum" class="content">
+  <div class="forum-box">
+    <h2>Forum</h2>
+    <p class="tagline">You have to login or register to post any content on forums.</p>
+	
+
+    <!-- Auth -->
+    <div id="auth-box" class="forum-box">
+      <input id="username" placeholder="Username (optional)" />
+      <input id="email" placeholder="Email" />
+      <input id="password" type="password" placeholder="Password" />
+
+      
+      <div id="auth-error" class="form-error hidden"></div>
+<button onclick="login()">Login</button>
+      <button onclick="register()">Register</button>
+    </div>
+
+    <div class="post-header">
+      <span id="user-status" class="post-author">Not logged in</span>
+      <span>
+        <button id="logout-btn" class="hidden" onclick="logout()">Logout</button>
+      </span>
+    </div>
+  </div>
+  
+
+  <!-- Create Thread (shown when logged in) -->
+  <div id="thread-create" class="forum-box hidden">
+    <h3>Start a thread</h3>
+    <input id="thread-title" placeholder="Thread title" />
+    <textarea id="thread-body" rows="4" placeholder="Write the first post..."></textarea>
+    <button onclick="createThread()">Create Thread</button>
+  </div>
+
+  <!-- Thread List -->
+  <div id="thread-list" class="forum-box">
+    <h3>Latest threads</h3>
+    <div id="threads">
+    </div>
+  </div>
+
+  <!-- Thread View -->
+  <div id="thread-view" class="forum-box hidden">
+    <div class="post-header">
+      <span>
+        <button onclick="closeThread()">← Back</button>
+      </span>
+      <span id="view-actions">
+        <!-- JS injects Edit/Delete buttons for owner -->
+      </span>
+    </div>
+
+    <!-- Thread main post -->
+    <div class="forum-post">
+      <div class="post-header">
+        <span class="author-with-avatar"><img id="view-author-avatar" class="post-avatar hidden" alt="avatar"><span id="view-author" class="post-author">Anonymous</span></span>
+        <span id="view-time" class="post-time"></span>
+      </div>
+      <div id="view-title" class="post-text" style="font-weight:600; margin-bottom:6px;"></div>
+      <div id="view-body" class="post-text"></div>
+    </div>
+
+    <h3 style="margin-top:16px;">Replies</h3>
+    <div id="replies">
+      <!-- JS will render replies as .forum-post cards -->
+    </div>
+
+    <!-- Reply box (shown when logged in) -->
+    <div id="reply-box" class="forum-box hidden" style="margin-top:16px;">
+      <textarea id="reply-text" rows="3" placeholder="Write a reply..."></textarea>
+      <button onclick="replyToThread()">Reply</button>
+    </div>
+  </div>
+
+
+  <script>
+const toggle = document.getElementById('mode-toggle');
+const body = document.body;
+
+toggle.addEventListener('click', () => {
+  body.classList.toggle('light-mode');
+  body.classList.toggle('dark-mode');
+
+  const icon = document.getElementById('mode-icon');
+  if (body.classList.contains('light-mode')) {
+    icon.src = "images/KinoStarBl.png";  // light mode icon
+    icon.alt = "Switch to Dark Mode";
+  } else {
+    icon.src = "images/KinoStar.png"; // dark mode icon
+    icon.alt = "Switch to Light Mode";
+  }
+});
+</script>
+
+<script type="module" src="js/forum.js"></script>
+
+
+</body>
+</html>
