@@ -895,9 +895,17 @@ body.light-mode #contact-modal button:hover {
   }
 }
 
+@media (min-width: 2560px) {
+  .img-inline,
+  .img-inline2 {
+    max-width: 220px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
   }
 }
+
 
