@@ -108,6 +108,7 @@ float: left;
 max-width: 260px;
 margin-left: 12px;
 margin-bottom: 8px;
+border: 1px solid rgba(255,255,255,0.15);
   transition:
     background-color 0.2s ease,
     border-color 0.2s ease,
@@ -120,6 +121,7 @@ float: right;
 max-width: 260px;
 margin-left: 12px;
 margin-bottom: 8px;
+border: 1px solid rgba(255,255,255,0.15);
   transition:
     background-color 0.2s ease,
     border-color 0.2s ease,
@@ -898,3 +900,4 @@ body.light-mode #contact-modal button:hover {
     transition: none !important;
   }
 }
+
