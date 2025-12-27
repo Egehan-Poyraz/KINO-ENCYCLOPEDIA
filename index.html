@@ -38,7 +38,7 @@
 <section id="intro" class="intro-box">
 <h2>Welcome to the Kino Encyclopedia</h2>
 <p>
-Kino was more than a Soviet rock band — it was a cultural shockwave. Led by the iconic
+Kino was more than a Soviet rock band, it was a cultural shockwave. Led by the iconic
 <a href="KinoMem.html#tsoi" class="wiki-link" data-preview="tsoi">
   Viktor Tsoi
 </a>
@@ -53,7 +53,6 @@ Whether you're a longtime fan or someone discovering Kino for the first time, th
 to guide you through their sound, their message, and their legacy.
 </p>
 </section>
-</main>
 
 <nav class="main-nav" role="navigation" aria-label="Contact navigation">
   <ul>
@@ -63,8 +62,27 @@ to guide you through their sound, their message, and their legacy.
   </ul>
 </nav>
 
+<section id="site-updates" class="intro-box forum-box">
+  <h2>Website Updates</h2>
+
+  <div id="updates-create" class="hidden">
+    <textarea
+      id="update-body"
+      rows="4"
+      placeholder="Post an update for the community..."
+    ></textarea>
+    <button id="post-update-btn">Post Update</button>
+  </div>
+
+  <div id="updates-list"></div>
+</section>
+  
+  
+
+</main>
+
 <footer class="site-footer">
-<p></p>
+  <p></p>
 </footer>
 
 <div id="contact-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="contact-title">
@@ -73,6 +91,7 @@ to guide you through their sound, their message, and their legacy.
       <h3 id="contact-title">Contact Us</h3>
       <button type="button" id="contactCloseBtn" aria-label="Close contact form">✕</button>
     </div>
+
 
     <p id="contact-msg" class="form-msg hidden"></p>
 
@@ -128,6 +147,19 @@ toggle.addEventListener('click', () => {
 </script>
 
 <script type="module" src="js/wikiPreview.js"></script>
+
+<!-- Firebase -->
+<script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+
+<!-- Shared forum logic (admin roles, updates, etc.) -->
+<script type="module" src="js/forum.js"></script>
+
+<!-- Your contact modal script (already there) -->
+<script>
+  // contact modal logic...
+</script>
 
 <script>
   const contactBtn = document.getElementById("contactBtn");
