@@ -11,6 +11,21 @@
 <body class="dark-mode">
 <button id="open-profile-btn" class="profile-btn hidden" onclick="openProfileModal()">Profile</button>
 
+<button id="mod-tools-btn" class="mod-btn hidden" onclick="openModerationModal()">Audit Logs</button>
+
+<div id="mod-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Moderation Log</h3>
+      <button onclick="closeModerationModal()">✕</button>
+    </div>
+
+    <div id="mod-log-list" class="forum-box" style="max-height: 400px; overflow-y: auto;">
+      <!-- JS will render logs right around here ig -->
+    </div>
+  </div>
+</div>
+
 
 <header class="site-header">
 <div class="logo-area">
@@ -93,19 +108,53 @@
   
 
   <!-- Create Thread (shown when logged in) -->
-  <div id="thread-create" class="forum-box hidden">
-    <h3>Start a thread</h3>
-    <input id="thread-title" placeholder="Thread title" />
-    <textarea id="thread-body" rows="4" placeholder="Write the first post..."></textarea>
-    <button onclick="createThread()">Create Thread</button>
-  </div>
+<div id="thread-create" class="forum-box hidden">
+  <h3>Start a thread</h3>
+  <input id="thread-title" placeholder="Thread title" />
+  <textarea id="thread-body" rows="4" placeholder="Write the first post..."></textarea>
+
+  <!-- Tag picker for the thread (no layout change: still just two buttons) -->
+  <button id="thread-tag-btn" type="button">Tags</button>
+  <button id="thread-attach-btn" type="button">Add attachments</button>
+  <span id="thread-attachments-summary" class="attachments-summary"></span>
+
+  <!-- live preview BEFORE posting -->
+  <div id="thread-attachment-preview" class="thread-attachment-preview"></div>
+
+  <button onclick="createThread()">Create Thread</button>
+  
+    <p id="thread-error" class="form-error" hidden></p>
+
+  <!-- hidden input – opened when "Add attachments" is clicked -->
+  <input
+    id="thread-attachments"
+    type="file"
+    multiple
+    accept="image/*,video/*"
+    hidden
+  />
+ 
+</div>
 
   <!-- Thread List -->
-  <div id="thread-list" class="forum-box">
+<div id="thread-list" class="forum-box">
+  <div class="thread-list-header">
     <h3>Latest threads</h3>
-    <div id="threads">
+
+    <!-- Search bar + tag filter (sits where your blue/red ovals are) -->
+    <div class="thread-filters">
+      <input
+        id="thread-search"
+        type="text"
+        placeholder="Search threads..."
+        autocomplete="off"
+      />
+      <button id="tag-filter-btn" type="button">Tags</button>
     </div>
   </div>
+
+  <div id="threads"></div>
+</div>
 
   <!-- Thread View -->
   <div id="thread-view" class="forum-box hidden">
@@ -126,6 +175,7 @@
       </div>
       <div id="view-title" class="post-text" style="font-weight:600; margin-bottom:6px;"></div>
       <div id="view-body" class="post-text"></div>
+      <div id="view-attachments" class="thread-attachments-view"></div>
     </div>
 
     <h3 style="margin-top:16px;">Replies</h3>
