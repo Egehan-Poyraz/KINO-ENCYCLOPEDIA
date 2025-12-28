@@ -1287,6 +1287,46 @@ body.light-mode .thread-attachment-remove {
   }
 }
 
+@media (max-width: 820px) {
+
+  .thread-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .thread-filters {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  #thread-search {
+    flex: 1 1 100%;
+    min-width: 0;
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  #tag-filter-btn {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 520px) {
+
+  .thread-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #tag-filter-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 @media (max-width: 700px) {
   #site-updates {
     padding: 16px;
@@ -1474,4 +1514,3 @@ body.light-mode .thread-attachment-remove {
     transition: none !important;
   }
 }
-
