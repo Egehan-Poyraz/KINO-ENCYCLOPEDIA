@@ -65,6 +65,14 @@ background-color: #1e1e1e;
 color: #e5e5e5;
 }
 
+#a2-link {
+	color: #551a8b;
+}
+
+body.light-mode #a2-link {
+	color: #0900ee;
+}
+
 body.light-mode .main-nav a {
 background-color: #e2e2e2;
 color: #1a1a1a;
