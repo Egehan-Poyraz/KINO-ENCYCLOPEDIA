@@ -1142,6 +1142,29 @@ async function uploadThreadAttachment(file) {
   };
 }
 
+// -------------------------------
+// Moderation logging helper
+// -------------------------------
+async function logModeration(action, details = {}) {
+  const user = auth.currentUser;
+  // Only mods/admins should be able to write logs
+  if (!user || !isModeratorRole()) return;
+
+  try {
+    const actorDisplayName = await getUsernameForUser(user);
+
+    await addDoc(collection(db, "moderationLogs"), {
+      action: String(action),          // must be a string for rules
+      actorUid: user.uid,              // must match request.auth.uid
+      actorDisplayName,                // nice to see in log
+      createdAt: serverTimestamp(),    // used by your listener ordering
+      ...details                       // threadId, replyId, targetUid, etc.
+    });
+  } catch (e) {
+    console.error("Moderation log write failed:", e);
+  }
+}
+
 async function timeoutUser(targetUid, minutes, extra = {}) {
   const user = auth.currentUser;
   if (!user || !isModeratorRole()) return;
